@@ -71,20 +71,20 @@ class SignInViewController: UIViewController {
         button.backgroundColor = .red
         button.layer.cornerRadius = 5
         
+        
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .white
+        signInButton.addTarget(self, action: #selector(login), for: .touchUpInside)
         // Добавляем элементы на view
         view.addSubview(companyImage)
         view.addSubview(textLabel)
         view.addSubview(loginStackView)
         view.addSubview(signInButton)
-        
-        signInButton.addTarget(self, action: #selector(login), for: .touchUpInside)
-        
         // Устанавливаем constraints
         setConstraints()
     }
@@ -108,7 +108,7 @@ class SignInViewController: UIViewController {
             loginStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             loginStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             
-            signInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
+            signInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 60),
             signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             signInButton.widthAnchor.constraint(equalToConstant: 250),
             signInButton.heightAnchor.constraint(equalToConstant: 50)
@@ -124,9 +124,7 @@ class SignInViewController: UIViewController {
         if username.isEmpty || password.isEmpty {
             print("Username / password cannot be blank")
             return
-        } else if username == "Test@test.ru" && password == "Welcome" {
-            signInButton.configuration?.showsActivityIndicator = true
-            
+        } else if username == "/" && password == "/" {
             navigationController?.pushViewController(BillViewController(), animated: true)
         }
         
