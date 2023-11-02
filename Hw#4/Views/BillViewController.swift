@@ -21,6 +21,8 @@ class BillViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Cafe Mario"
+        
         view.addSubview(testText)
         
         setConstraints()

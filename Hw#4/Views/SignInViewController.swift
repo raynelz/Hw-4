@@ -1,6 +1,14 @@
 import UIKit
 
 class SignInViewController: UIViewController {
+    //TextField Variables
+    var username: String? {
+        return emailTextField.text
+    }
+    
+    var password: String? {
+        return passwordTextField.text
+    }
     
     // UI элементы
     private let companyImage: UIImageView = {
@@ -14,28 +22,44 @@ class SignInViewController: UIViewController {
         let text = UILabel()
         text.text = "Sign In"
         text.font = .systemFont(ofSize: 30, weight: .semibold)
-        text.textAlignment = .center
+        text.textAlignment = .left
+        return text
+    }()
+    
+    private let emailLabel: UILabel = {
+        let text = UILabel()
+        text.text = "Email"
+        text.textColor = .systemRed
+        text.font = .systemFont(ofSize: 15, weight: .semibold)
+        text.textAlignment = .left
         return text
     }()
     
     
     private let emailTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Email"
         textField.borderStyle = .roundedRect
         return textField
     }()
     
+    private let passwordLabel: UILabel = {
+        let text = UILabel()
+        text.text = "Password"
+        text.textColor = .systemRed
+        text.font = .systemFont(ofSize: 15, weight: .semibold)
+        text.textAlignment = .left
+        return text
+    }()
+    
     private let passwordTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Password"
         textField.borderStyle = .roundedRect
         textField.isSecureTextEntry = true
         return textField
     }()
     
     private lazy var loginStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField])
+        let stackView = UIStackView(arrangedSubviews: [emailLabel, emailTextField, passwordLabel,passwordTextField])
         stackView.axis = .vertical
         stackView.spacing = 15
         return stackView
@@ -59,7 +83,7 @@ class SignInViewController: UIViewController {
         view.addSubview(loginStackView)
         view.addSubview(signInButton)
         
-        signInButton.addTarget(self, action: #selector(nextPage), for: .touchUpInside)
+        signInButton.addTarget(self, action: #selector(login), for: .touchUpInside)
         
         // Устанавливаем constraints
         setConstraints()
@@ -71,13 +95,13 @@ class SignInViewController: UIViewController {
         loginStackView.translatesAutoresizingMaskIntoConstraints = false
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            companyImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            companyImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
             companyImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             companyImage.heightAnchor.constraint(equalToConstant: 100),
             companyImage.widthAnchor.constraint(equalToConstant: 100),
             
-            textLabel.topAnchor.constraint(equalTo: companyImage.bottomAnchor, constant: 20),
-            textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            textLabel.topAnchor.constraint(equalTo: companyImage.bottomAnchor, constant: 10),
+            textLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             
             loginStackView.topAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20),
             loginStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -91,8 +115,23 @@ class SignInViewController: UIViewController {
         ])
     }
     
-    @objc func nextPage() {
-        let nextViewController = BillViewController()
-        navigationController?.pushViewController(nextViewController, animated: true)
+    //MARK: LOGIN EMAIL & PASSWORD
+    @objc func login() {
+        guard let username = username, let password = password else {
+            assertionFailure("Username / password should never be nil")
+            return
+        }
+        if username.isEmpty || password.isEmpty {
+            print("Username / password cannot be blank")
+            return
+        } else if username == "Test@test.ru" && password == "Welcome" {
+            signInButton.configuration?.showsActivityIndicator = true
+            
+            navigationController?.pushViewController(BillViewController(), animated: true)
+        }
+        
     }
 }
+
+
+
