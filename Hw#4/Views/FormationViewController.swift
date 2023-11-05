@@ -10,6 +10,10 @@ import UIKit
 class FormationViewController: UIViewController {
     
     //MARK: - UI Elements
+    private let TableReserveSwitch: UISwitch = UISwitch()
+    private let PreorderSwitch: UISwitch = UISwitch()
+    private let VIPRoomSwitch: UISwitch = UISwitch()
+    
     private let FIOLabel: UILabel = {
         let text = UILabel()
         text.text = "ФИО"
@@ -85,10 +89,6 @@ class FormationViewController: UIViewController {
         text.textAlignment = .left
         return text
     }()
-    
-    private let TableReserveSwitch: UISwitch = UISwitch()
-    private let PreorderSwitch: UISwitch = UISwitch()
-    private let VIPRoomSwitch: UISwitch = UISwitch()
     
     //MARK: - textFieldsStackView
     private lazy var textFieldsStackView: UIStackView =  {

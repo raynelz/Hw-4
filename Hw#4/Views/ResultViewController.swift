@@ -80,18 +80,15 @@ class ResultViewController: UIViewController {
     }
 }
 
-//MARK: - UITableViewDelegate
-extension ResultViewController: UITableViewDelegate {
+//MARK: - UITableViewDelegate && UITableViewDataSource
+extension ResultViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath.row)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70.0
     }
-}
-
-//MARK: - UITableViewDataSource
-extension ResultViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menuItems.count
     }
@@ -133,10 +130,4 @@ extension ResultViewController: UITableViewDataSource {
         
         return cell!
     }
-    
-    
-    
-    
 }
-
-

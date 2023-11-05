@@ -74,20 +74,44 @@ class SignInViewController: UIViewController {
         return button
     }()
     
+    private let errorLabel: UILabel = {
+        let label = UILabel()
+        label.text = ""
+        label.textColor = .systemRed
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 15, weight: .medium)
+        return label
+    }()
+    
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
+        
+        let passwordToggleButton = UIButton(type: .custom)
+        passwordToggleButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        passwordToggleButton.setImage(UIImage(systemName: "eye.slash"), for: .selected)
+        passwordToggleButton.tintColor = .systemRed
+        passwordToggleButton.addTarget(self, action: #selector(togglePasswordVisibility), for: .touchUpInside)
+        passwordTextField.rightView = passwordToggleButton
+        passwordTextField.rightViewMode = .whileEditing
+        
         signInButton.addTarget(self, action: #selector(login), for: .touchUpInside)
         // Добавляем элементы на view
         view.addSubview(companyImage)
         view.addSubview(textLabel)
         view.addSubview(loginStackView)
         view.addSubview(signInButton)
+        view.addSubview(errorLabel)
         // Устанавливаем constraints
         setConstraints()
     }
+    
+    //passwordToggleButton
+    @objc func togglePasswordVisibility(_ sender: UIButton) {
+          sender.isSelected = !sender.isSelected
+          passwordTextField.isSecureTextEntry = !sender.isSelected
+      }
     
     //signInButton
     @objc func login() {
@@ -96,9 +120,9 @@ class SignInViewController: UIViewController {
             return
         }
         if email.isEmpty || password.isEmpty {
-            print("Email / password cannot be blank")
+            errorLabel.text = "Email / password cannot be blank"
             return
-        } else if email == "/" && password == "/" {
+        } else if email == "zahar@raynelz.ru" && password == "strongPassword" {
             navigationController?.pushViewController(FormationViewController(), animated: true)
         }
         
@@ -110,6 +134,7 @@ class SignInViewController: UIViewController {
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         loginStackView.translatesAutoresizingMaskIntoConstraints = false
         signInButton.translatesAutoresizingMaskIntoConstraints = false
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             companyImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
             companyImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -127,7 +152,10 @@ class SignInViewController: UIViewController {
             signInButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 60),
             signInButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             signInButton.widthAnchor.constraint(equalToConstant: 250),
-            signInButton.heightAnchor.constraint(equalToConstant: 50)
+            signInButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            errorLabel.topAnchor.constraint(equalTo: signInButton.bottomAnchor, constant: 30),
+            errorLabel.centerXAnchor.constraint(equalTo: signInButton.centerXAnchor)
         ])
     }
 }
