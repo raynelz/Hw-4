@@ -125,7 +125,7 @@ class SignInViewController: UIViewController {
             print("Username / password cannot be blank")
             return
         } else if username == "/" && password == "/" {
-            navigationController?.pushViewController(BillViewController(), animated: true)
+            navigationController?.pushViewController(FormationViewController(), animated: true)
         }
         
     }

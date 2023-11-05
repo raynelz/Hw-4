@@ -7,26 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC609BAF2AF4EDC2006AEB16 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC609BAE2AF4EDC2006AEB16 /* MenuItem.swift */; };
 		EC69E00B2AF43BE1006C840B /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC69E00A2AF43BE1006C840B /* ResultViewController.swift */; };
-		EC747A822AF444AD004D52DF /* BillData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC747A812AF444AD004D52DF /* BillData.swift */; };
 		EC87F8812AF39B25008C1476 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC87F8802AF39B25008C1476 /* AppDelegate.swift */; };
 		EC87F8852AF39B25008C1476 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC87F8842AF39B25008C1476 /* SignInViewController.swift */; };
 		EC87F88A2AF39B26008C1476 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC87F8892AF39B26008C1476 /* Assets.xcassets */; };
 		EC87F88D2AF39B26008C1476 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC87F88B2AF39B26008C1476 /* LaunchScreen.storyboard */; };
-		EC87F8972AF3B1CA008C1476 /* BillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC87F8962AF3B1CA008C1476 /* BillViewController.swift */; };
+		EC87F8972AF3B1CA008C1476 /* FormationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC87F8962AF3B1CA008C1476 /* FormationViewController.swift */; };
 		EC87F8992AF3D476008C1476 /* TЗ.txt in Resources */ = {isa = PBXBuildFile; fileRef = EC87F8982AF3D476008C1476 /* TЗ.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC609BAE2AF4EDC2006AEB16 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		EC69E00A2AF43BE1006C840B /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
-		EC747A812AF444AD004D52DF /* BillData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillData.swift; sourceTree = "<group>"; };
 		EC87F87D2AF39B25008C1476 /* Hw#4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Hw#4.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC87F8802AF39B25008C1476 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC87F8842AF39B25008C1476 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		EC87F8892AF39B26008C1476 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC87F88C2AF39B26008C1476 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC87F88E2AF39B26008C1476 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC87F8962AF3B1CA008C1476 /* BillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillViewController.swift; sourceTree = "<group>"; };
+		EC87F8962AF3B1CA008C1476 /* FormationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormationViewController.swift; sourceTree = "<group>"; };
 		EC87F8982AF3D476008C1476 /* TЗ.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "TЗ.txt"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -44,7 +44,7 @@
 		EC747A832AF444D2004D52DF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EC747A812AF444AD004D52DF /* BillData.swift */,
+				EC609BAE2AF4EDC2006AEB16 /* MenuItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -81,7 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				EC87F8842AF39B25008C1476 /* SignInViewController.swift */,
-				EC87F8962AF3B1CA008C1476 /* BillViewController.swift */,
+				EC87F8962AF3B1CA008C1476 /* FormationViewController.swift */,
 				EC69E00A2AF43BE1006C840B /* ResultViewController.swift */,
 			);
 			path = Views;
@@ -169,10 +169,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC87F8852AF39B25008C1476 /* SignInViewController.swift in Sources */,
-				EC747A822AF444AD004D52DF /* BillData.swift in Sources */,
 				EC87F8812AF39B25008C1476 /* AppDelegate.swift in Sources */,
-				EC87F8972AF3B1CA008C1476 /* BillViewController.swift in Sources */,
+				EC87F8972AF3B1CA008C1476 /* FormationViewController.swift in Sources */,
 				EC69E00B2AF43BE1006C840B /* ResultViewController.swift in Sources */,
+				EC609BAF2AF4EDC2006AEB16 /* MenuItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BillViewController: UIViewController {
+class FormationViewController: UIViewController {
     
     // UI элементы
     private let FIOLabel: UILabel = {
@@ -148,8 +148,8 @@ class BillViewController: UIViewController {
         let alertController = UIAlertController(title: nil, message: "Продолжить?", preferredStyle: .alert)
 
            let yesAction = UIAlertAction(title: "Да", style: .default) { _ in
-               let billData = BillData(name: self.FIOTextField.text, tableNumber: self.NumberOfTableTextField.text)
-               self.navigationController?.pushViewController(ResultViewController(billData: billData), animated: true)
+               let resultViewController = ResultViewController()
+               self.navigationController?.pushViewController(resultViewController, animated: true)
               
            }
 
