@@ -9,11 +9,12 @@ import UIKit
 
 class ResultViewController: UIViewController {
     
+    //MARK: - TableView Data
     var menuItems: [MenuItem] = [
         MenuItem(name: "Салат Цезарь", description: "Помидор, салат айсберг, курица", price: "300 р"),
         MenuItem(name: "Салат Греческий", description: "Помидоры, маслины, огурцы, фета, лук-шалот", price: "400 р")
     ]
-    
+    //MARK: - UI Elements
     private let tableView: UITableView =  {
         let table = UITableView.init(frame: CGRect.zero, style: .plain)
         return table
@@ -34,8 +35,7 @@ class ResultViewController: UIViewController {
         return label
     }()
     
-    
-    
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -46,14 +46,13 @@ class ResultViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         view.addSubview(tableView)
-        
-        //MARK: - TOTALVIEW
         view.addSubview(totalContainerView)
         totalContainerView.addSubview(totalLabel)
         
         setConstraints()
     }
     
+    //MARK: - Constraints
     private func setConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         totalContainerView.translatesAutoresizingMaskIntoConstraints = false

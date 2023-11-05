@@ -1,8 +1,8 @@
 import UIKit
 
 class SignInViewController: UIViewController {
-    //TextField Variables
-    var username: String? {
+    //MARK: - TextField Variables
+    var email: String? {
         return emailTextField.text
     }
     
@@ -10,7 +10,7 @@ class SignInViewController: UIViewController {
         return passwordTextField.text
     }
     
-    // UI элементы
+    //MARK: - UI Elements
     private let companyImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "logo")
@@ -58,6 +58,7 @@ class SignInViewController: UIViewController {
         return textField
     }()
     
+    //MARK: - loginStackView
     private lazy var loginStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [emailLabel, emailTextField, passwordLabel,passwordTextField])
         stackView.axis = .vertical
@@ -70,11 +71,10 @@ class SignInViewController: UIViewController {
         button.setTitle("Войти", for: .normal)
         button.backgroundColor = .red
         button.layer.cornerRadius = 5
-        
-        
         return button
     }()
     
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -89,6 +89,22 @@ class SignInViewController: UIViewController {
         setConstraints()
     }
     
+    //signInButton
+    @objc func login() {
+        guard let email = email, let password = password else {
+            assertionFailure("Email / password should never be nil")
+            return
+        }
+        if email.isEmpty || password.isEmpty {
+            print("Email / password cannot be blank")
+            return
+        } else if email == "/" && password == "/" {
+            navigationController?.pushViewController(FormationViewController(), animated: true)
+        }
+        
+    }
+    
+    //MARK: - Constraints
     private func setConstraints() {
         companyImage.translatesAutoresizingMaskIntoConstraints = false
         textLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -114,22 +130,4 @@ class SignInViewController: UIViewController {
             signInButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
-    
-    //MARK: LOGIN EMAIL & PASSWORD
-    @objc func login() {
-        guard let username = username, let password = password else {
-            assertionFailure("Username / password should never be nil")
-            return
-        }
-        if username.isEmpty || password.isEmpty {
-            print("Username / password cannot be blank")
-            return
-        } else if username == "/" && password == "/" {
-            navigationController?.pushViewController(FormationViewController(), animated: true)
-        }
-        
-    }
 }
-
-
-

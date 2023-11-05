@@ -9,7 +9,7 @@ import UIKit
 
 class FormationViewController: UIViewController {
     
-    // UI элементы
+    //MARK: - UI Elements
     private let FIOLabel: UILabel = {
         let text = UILabel()
         text.text = "ФИО"
@@ -86,22 +86,24 @@ class FormationViewController: UIViewController {
         return text
     }()
     
+    private let TableReserveSwitch: UISwitch = UISwitch()
+    private let PreorderSwitch: UISwitch = UISwitch()
+    private let VIPRoomSwitch: UISwitch = UISwitch()
+    
+    //MARK: - textFieldsStackView
+    private lazy var textFieldsStackView: UIStackView =  {
+        let stack = UIStackView(arrangedSubviews: [FIOLabel, FIOTextField, GuestsLabel, CountOfGuestsTextField, TableCountLabel, NumberOfTableTextField])
+        stack.axis = .vertical
+        stack.spacing = 15
+        return stack
+    }()
+    
+    //MARK: - switchStackView
     private lazy var switchStackView: UIStackView = {
        let stack = UIStackView(arrangedSubviews: [tableLabel, TableReserveSwitch, preorderLabel, PreorderSwitch, vipLabel, VIPRoomSwitch])
         
         stack.axis = .vertical
         stack.spacing = 10
-        return stack
-    }()
-    
-    private let TableReserveSwitch: UISwitch = UISwitch()
-    private let PreorderSwitch: UISwitch = UISwitch()
-    private let VIPRoomSwitch: UISwitch = UISwitch()
-    
-    private lazy var textFieldsStackView: UIStackView =  {
-        let stack = UIStackView(arrangedSubviews: [FIOLabel, FIOTextField, GuestsLabel, CountOfGuestsTextField, TableCountLabel, NumberOfTableTextField])
-        stack.axis = .vertical
-        stack.spacing = 15
         return stack
     }()
     
@@ -127,6 +129,7 @@ class FormationViewController: UIViewController {
         return stack
     }()
     
+    //MARK: - verticalStackView
     private lazy var verticalStackView: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [horizotalStackView, horizontalStackViewTwo, horizontalStackViewThree])
         stack.axis = .vertical
@@ -144,6 +147,27 @@ class FormationViewController: UIViewController {
     }()
     
     
+
+    //MARK: - viewDidLoad
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        title = "Cafe Mario"
+        //BarButtonItem
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
+
+        billButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
+   
+        view.addSubview(textFieldsStackView)
+        view.addSubview(verticalStackView)
+        view.addSubview(billButton)
+        
+        setConstraints()
+    }
+    
+    //showAlert
     @objc func showAlert() {
         let alertController = UIAlertController(title: nil, message: "Продолжить?", preferredStyle: .alert)
 
@@ -161,42 +185,26 @@ class FormationViewController: UIViewController {
            present(alertController, animated: true)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        
-        //BarButtonItem
-        let backItem = UIBarButtonItem()
-        backItem.title = "Back"
-        navigationItem.backBarButtonItem = backItem
-
-        billButton.addTarget(self, action: #selector(showAlert), for: .touchUpInside)
-        
-        title = "Cafe Mario"
-        view.addSubview(textFieldsStackView)
-        view.addSubview(verticalStackView)
-        view.addSubview(billButton)
-        
-        setConstraints()
-    }
-    
+    //MARK: - Constraints
     private func setConstraints() {
         textFieldsStackView.translatesAutoresizingMaskIntoConstraints = false
         verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         billButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
+            //textFieldsStackView
             textFieldsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             textFieldsStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             textFieldsStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             textFieldsStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             
+            //verticalStackView
             verticalStackView.topAnchor.constraint(equalTo: textFieldsStackView.bottomAnchor, constant: 20),
             verticalStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             verticalStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
             verticalStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
             
-
+            //billButton
             billButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             billButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             billButton.widthAnchor.constraint(equalToConstant: 250),
